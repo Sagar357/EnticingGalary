@@ -1,0 +1,90 @@
+﻿@model IEnumerable<EnticingGalary.Models.WallpaperHomePageContent>
+
+@{
+    ViewBag.Title = "Home Page Content";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header pb-10 page-header-dark bg-gradient-primary-to-secondary">
+    <div class="container-fluid">
+        <div class="page-header-content">
+            <div class="page-header-title">
+                <div class="page-header-icon"><i data-feather="activity"></i></div>
+                <span>Home Page Content</span>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-n10">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+               
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example1" class="table table-responsive" style="font-size:12px;">
+                        <thead>
+                            <tr>
+                                <th>
+                                    #
+                                </th>
+                                <th>
+                                    Trending
+                                </th>
+                                <th>
+                                    Featured Category
+                                </th>
+                                <th>
+                                    Trending Albums
+                                </th>
+                                <th>
+                                    Most View Albums
+                                </th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbody">
+
+                            @{ int i = 1;}
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@Html.Raw(i++)</td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TrendingThisWeek)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FeaturedCategory)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TrendingWallpaperAlbums)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MostViewWallpaperAlbums)
+                                    </td>
+                                    <td class="d-flex">
+                                        <a title="edit" style="color:blue !important;font-size:20px;text-decoration:none;" href="@Url.Action("EditWallpaperHomePageContent", "Admin", new { id =item.WHPContentId })">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        &nbsp;
+                                        &nbsp;
+                                        <a title="detail" style="color:green !important;font-size:20px;text-decoration:none;" href="@Url.Action("WallpaperHomePageContentDetail", "Admin", new { id =item.WHPContentId })">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

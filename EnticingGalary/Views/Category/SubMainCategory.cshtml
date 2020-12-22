@@ -1,0 +1,117 @@
+﻿@{
+
+    ViewBag.Title = @ViewBag.MetaCTTitle;
+    ViewBag.MetaKeywords = @ViewBag.MetaCTKeywords;
+    ViewBag.MetaDescription = @ViewBag.MetaCTDescriptions;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .header-area {
+        background: #fff !important;
+        box-shadow: 0px 2px 3px rgba(0,0,0,0.2) !important;
+    }
+
+    .search-top {
+        display: block !important;
+    }
+
+    .bars {
+        color: rgb(44, 62, 82) !important;
+    }
+</style>
+
+<br />
+<br />
+<br />
+
+
+
+<section class="image-view-section my-5">
+    <div class="container">
+        <div class="row text-center">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- horizontal -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:100%;height:170px"
+                 data-ad-client="ca-pub-6940190588220355"
+                 data-ad-slot="8563710137"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <h3 class="">@ViewBag.SearchcategoryTypeName</h3>
+        <div class="row">
+
+            @{ int i = 1;}
+            @foreach (var subcategory in ViewBag.SubcategoryList)
+            {
+                if (i % 3 == 0)
+                {
+
+                    <div class="col-lg-4 col-md-6 col-12 my-3">
+                        <div class="d-flex justify-content-between py-4 px-3">
+                            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:100%;height:200px"
+                                 data-ad-client="ca-pub-6940190588220355"
+                                 data-ad-slot="7769503211"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+
+                        </div>
+
+                    </div>
+                }
+                <div class="col-lg-4 col-md-6 col-12 my-3">
+                    <div class="sub-category-bx d-flex justify-content-between py-4 px-3">
+
+                        <div class="img-bx p-2">
+                            <img src="@Url.Content(subcategory["CategoryImagePath"])" />
+                        </div>
+                        <div class="img-bx-text p-2">
+                            <a href="@Url.Action("SubCategoryDetail", "Category", new { SEOCategoryName = @subcategory["SEOCategoryName"] })">
+
+                                <h5 class="text-white text-justyfy">@subcategory["CatName"]</h5>
+                            </a>
+                            <p style="color:#fff;margin-bottom:0px;">
+                                @subcategory["TotalSubCategory"] Wallpapers
+                            </p>
+                            <p style="color:#fff;margin-top:0px;">
+                                @subcategory["Review"] Views
+                            </p>
+
+                            <p style="color:#fff;margin-top:0px;">
+                                <a href="https://www.facebook.com/sharer/sharer.php?u=https://24wallpapers.com&hashtag=wallpaper&quote=24wallpapers is an online platform of high-quality free stock photos" title="share on facebook" class="share-icons mr-1 ml-1">
+                                    <i class="fab fa-facebook-f font18"></i>
+                                </a>
+
+
+                                <a href="https://twitter.com/share?url=https://24wallpapers.com/&text=https://24wallpapers.com/wallpaper/@subcategory["SEOMainCategoryName"]&hashtags=wallpapers" title="share on twitter" class="share-icons mr-1 ml-1">
+                                    <i class="fab fa-twitter font18"></i>
+                                </a>
+
+
+
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+        <div class="row text-center">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- horizontal -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:100%;height:170px"
+                 data-ad-client="ca-pub-6940190588220355"
+                 data-ad-slot="8563710137"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
+</section>

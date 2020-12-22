@@ -1,0 +1,121 @@
+﻿@model IEnumerable<EnticingGalary.Models.Category>
+
+@{
+    ViewBag.Title = "Sub Categories";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header pb-10 page-header-dark bg-gradient-primary-to-secondary">
+    <div class="container-fluid">
+        <div class="page-header-content">
+            <h1 class="page-header-title">
+                <div class="page-header-icon"><i data-feather="activity"></i></div>
+                <span>Sub Category</span>
+            </h1>
+           
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-n10">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <a style="color:#fff;" class="btn btn-primary" href="@Url.Action("AddNewCategory","Admin")"><i class="fas fa-plus"></i>&nbsp;Add New Sub Category</a>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example1" class="table table-responsive" style="font-size:12px;">
+                        <thead>
+                            <tr>
+                                <th>
+                                    #
+                                </th>
+                                <th>
+                                    Main Category
+                                </th>
+                                <th>
+                                    Sub Category Name
+                                </th>
+                                <th>
+                                    Sub Category Image
+                                </th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbody">
+
+                            @{ int i = 1;}
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@Html.Raw(i++)</td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CategoryTypeName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CategoryName)
+                                    </td>
+                                    <td>
+                                        <img src="@Url.Content(item.CategoryImagePath)" data-secret="@Url.Content(item.CategoryImagePath)" alt="@item.CategoryName" width="80" height="80" />
+                                    </td>
+                                    
+                                    <td>
+                                        <a  title="edit" style="color:blue !important;font-size:20px;text-decoration:none;" href="@Url.Action("EditCategory", "Admin", new { id =item.CategoryId })">
+                                            <i class="fas fa-edit"></i>
+                                            </a>
+                                        || <a class="DeleteCss" style="color:red !important;font-size:20px;text-decoration:none;" href="@Url.Action("DeleteCategory", "Admin", new { id=item.CategoryId })" title="delete"><i class="fa fa-trash"></i></a>
+</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+       
+
+
+
+@section deletescript
+{
+    <script>
+        $('body').on('click', 'a.DeleteCss', function (e) {
+            e.preventDefault();
+                var DeleteUrl = $(this).attr("href");
+                if (confirm("Are you sure wants to delete ?.")) {
+                    $.ajax(
+                    {
+                        url: DeleteUrl,
+                        dataType: "json",
+                        type: "POST",
+                        contentType: "application/json",
+                        error: function (err) {
+                            alert('Unable to delete record.');
+                        },
+                        success: function (response) {
+                            sweetAlert({
+                                title: "Congratulations!!",
+                                text: "Sub Category Deleted Successfully...",
+                                type: "success",
+                                confirmButtonClass: "btn-success",
+                                confirmButtonText: "Thank You"
+                            },
+                    function (isConfirm) {
+                        if (isConfirm) {
+                            window.location.href = '@Url.Action("Category", "Admin")';
+                        } else {
+                            window.location.href = '@Url.Action("Category", "Admin")';
+                        }
+                    });
+
+                        }
+                    });
+                }
+            });
+    </script>
+}
+

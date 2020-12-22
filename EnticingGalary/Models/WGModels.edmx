@@ -1,0 +1,381 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EnticingWallpaperDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminLogin">
+          <Key>
+            <PropertyRef Name="AdminLoginId" />
+          </Key>
+          <Property Name="AdminLoginId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmailId" Type="nvarchar(max)" />
+          <Property Name="AdminPwd" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="500" />
+          <Property Name="CategoryDescription" Type="nvarchar(max)" />
+          <Property Name="CategoryImagePath" Type="nvarchar(max)" />
+          <Property Name="CategoryTypeId" Type="bigint" />
+          <Property Name="CategoryTypeName" Type="nvarchar(max)" />
+          <Property Name="SEOCategoryName" Type="nvarchar(max)" />
+          <Property Name="SEOCategoryTypeName" Type="nvarchar(max)" />
+          <Property Name="MetaCatTitle" Type="nvarchar(max)" />
+          <Property Name="MetaCatKeywords" Type="nvarchar(max)" />
+          <Property Name="MetaCatDescription" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="Review" Type="bigint" />
+          <Property Name="CategoryDescriptionBottom" Type="nvarchar(max)" />
+          <Property Name="alias" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="CategoryType">
+          <Key>
+            <PropertyRef Name="CategoryTypeId" />
+          </Key>
+          <Property Name="CategoryTypeId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryTypeName" Type="nvarchar(max)" />
+          <Property Name="SEOCategoryTypeName" Type="nvarchar(max)" />
+          <Property Name="CategoryTypeBannerImage" Type="nvarchar(max)" />
+          <Property Name="MetaCTTitle" Type="nvarchar(max)" />
+          <Property Name="MetaCTKeywords" Type="nvarchar(max)" />
+          <Property Name="MetaCTDescriptions" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="CategoryTypeContent" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ContactEnquiry">
+          <Key>
+            <PropertyRef Name="ContactEnquiryId" />
+          </Key>
+          <Property Name="ContactEnquiryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="MobileNumber" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="EnquiryMessage" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="WallFaq">
+          <Key>
+            <PropertyRef Name="FaqId" />
+          </Key>
+          <Property Name="FaqId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FaqTitle" Type="nvarchar(max)" />
+          <Property Name="FaqDesc" Type="nvarchar(max)" />
+          <Property Name="AutoGFaqId" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Wallpaper">
+          <Key>
+            <PropertyRef Name="WallpaperId" />
+          </Key>
+          <Property Name="WallpaperId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MainCategoryId" Type="bigint" />
+          <Property Name="MainCategoryName" Type="nvarchar(max)" />
+          <Property Name="CatId" Type="bigint" />
+          <Property Name="CatName" Type="nvarchar" MaxLength="500" />
+          <Property Name="WallpaperName" Type="nvarchar(max)" />
+          <Property Name="SEOMainCategoryName" Type="nvarchar(max)" />
+          <Property Name="SEOCatName" Type="nvarchar(max)" />
+          <Property Name="SEOWallpaperName" Type="nvarchar(max)" />
+          <Property Name="WallpaperImagePath" Type="nvarchar(max)" />
+          <Property Name="WallpaperDetail" Type="nvarchar(max)" />
+          <Property Name="MetaWallTitle" Type="nvarchar(max)" />
+          <Property Name="MetaWallKeywords" Type="nvarchar(max)" />
+          <Property Name="MetaWallDescriptions" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="WallpaperHomePageContent">
+          <Key>
+            <PropertyRef Name="WHPContentId" />
+          </Key>
+          <Property Name="WHPContentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TrendingThisWeek" Type="nvarchar(max)" />
+          <Property Name="TrendingThisWeekContent" Type="nvarchar(max)" />
+          <Property Name="FeaturedCategory" Type="nvarchar(max)" />
+          <Property Name="FeaturedCategoryContent" Type="nvarchar(max)" />
+          <Property Name="TrendingWallpaperAlbums" Type="nvarchar(max)" />
+          <Property Name="TrendingWallpaperAlbumsContent" Type="nvarchar(max)" />
+          <Property Name="MostViewWallpaperAlbums" Type="nvarchar(max)" />
+          <Property Name="MostViewWallpaperAlbumsContent" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedOn" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="EnticingWallpaperDbModelStoreContainer">
+          <EntitySet Name="AdminLogin" EntityType="Self.AdminLogin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoryType" EntityType="Self.CategoryType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContactEnquiry" EntityType="Self.ContactEnquiry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WallFaq" EntityType="Self.WallFaq" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Wallpaper" EntityType="Self.Wallpaper" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WallpaperHomePageContent" EntityType="Self.WallpaperHomePageContent" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EnticingWallpaperDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AdminLogin">
+          <Key>
+            <PropertyRef Name="AdminLoginId" />
+          </Key>
+          <Property Name="AdminLoginId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmailId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AdminPwd" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryTypeId" Type="Int64" />
+          <Property Name="CategoryTypeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SEOCategoryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SEOCategoryTypeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaCatTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaCatKeywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaCatDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Review" Type="Int64" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CategoryDescriptionBottom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="alias" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CategoryType">
+          <Key>
+            <PropertyRef Name="CategoryTypeId" />
+          </Key>
+          <Property Name="CategoryTypeId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryTypeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SEOCategoryTypeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryTypeBannerImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaCTTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaCTKeywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaCTDescriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryTypeContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ContactEnquiry">
+          <Key>
+            <PropertyRef Name="ContactEnquiryId" />
+          </Key>
+          <Property Name="ContactEnquiryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EnquiryMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="WallFaq">
+          <Key>
+            <PropertyRef Name="FaqId" />
+          </Key>
+          <Property Name="FaqId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FaqTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FaqDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="AutoGFaqId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Wallpaper">
+          <Key>
+            <PropertyRef Name="WallpaperId" />
+          </Key>
+          <Property Name="WallpaperId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MainCategoryId" Type="Int64" />
+          <Property Name="MainCategoryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CatId" Type="Int64" />
+          <Property Name="CatName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="WallpaperName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SEOMainCategoryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SEOCatName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SEOWallpaperName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WallpaperImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WallpaperDetail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaWallTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaWallKeywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaWallDescriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="WallpaperHomePageContent">
+          <Key>
+            <PropertyRef Name="WHPContentId" />
+          </Key>
+          <Property Name="WHPContentId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TrendingThisWeek" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TrendingThisWeekContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FeaturedCategory" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FeaturedCategoryContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TrendingWallpaperAlbums" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TrendingWallpaperAlbumsContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MostViewWallpaperAlbums" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MostViewWallpaperAlbumsContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="EnticingWallpaperDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdminLogins" EntityType="Self.AdminLogin" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="CategoryTypes" EntityType="Self.CategoryType" />
+          <EntitySet Name="ContactEnquiries" EntityType="Self.ContactEnquiry" />
+          <EntitySet Name="WallFaqs" EntityType="Self.WallFaq" />
+          <EntitySet Name="Wallpapers" EntityType="Self.Wallpaper" />
+          <EntitySet Name="WallpaperHomePageContents" EntityType="Self.WallpaperHomePageContent" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EnticingWallpaperDbModelStoreContainer" CdmEntityContainer="EnticingWallpaperDbEntities">
+          <EntitySetMapping Name="AdminLogins">
+            <EntityTypeMapping TypeName="EnticingWallpaperDbModel.AdminLogin">
+              <MappingFragment StoreEntitySet="AdminLogin">
+                <ScalarProperty Name="AdminLoginId" ColumnName="AdminLoginId" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="AdminPwd" ColumnName="AdminPwd" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="EnticingWallpaperDbModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="alias" ColumnName="alias" />
+                <ScalarProperty Name="CategoryDescriptionBottom" ColumnName="CategoryDescriptionBottom" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CategoryDescription" ColumnName="CategoryDescription" />
+                <ScalarProperty Name="CategoryImagePath" ColumnName="CategoryImagePath" />
+                <ScalarProperty Name="CategoryTypeId" ColumnName="CategoryTypeId" />
+                <ScalarProperty Name="CategoryTypeName" ColumnName="CategoryTypeName" />
+                <ScalarProperty Name="SEOCategoryName" ColumnName="SEOCategoryName" />
+                <ScalarProperty Name="SEOCategoryTypeName" ColumnName="SEOCategoryTypeName" />
+                <ScalarProperty Name="MetaCatTitle" ColumnName="MetaCatTitle" />
+                <ScalarProperty Name="MetaCatKeywords" ColumnName="MetaCatKeywords" />
+                <ScalarProperty Name="MetaCatDescription" ColumnName="MetaCatDescription" />
+                <ScalarProperty Name="Review" ColumnName="Review" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategoryTypes">
+            <EntityTypeMapping TypeName="EnticingWallpaperDbModel.CategoryType">
+              <MappingFragment StoreEntitySet="CategoryType">
+                <ScalarProperty Name="CategoryTypeId" ColumnName="CategoryTypeId" />
+                <ScalarProperty Name="CategoryTypeName" ColumnName="CategoryTypeName" />
+                <ScalarProperty Name="SEOCategoryTypeName" ColumnName="SEOCategoryTypeName" />
+                <ScalarProperty Name="CategoryTypeBannerImage" ColumnName="CategoryTypeBannerImage" />
+                <ScalarProperty Name="MetaCTTitle" ColumnName="MetaCTTitle" />
+                <ScalarProperty Name="MetaCTKeywords" ColumnName="MetaCTKeywords" />
+                <ScalarProperty Name="MetaCTDescriptions" ColumnName="MetaCTDescriptions" />
+                <ScalarProperty Name="CategoryTypeContent" ColumnName="CategoryTypeContent" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContactEnquiries">
+            <EntityTypeMapping TypeName="EnticingWallpaperDbModel.ContactEnquiry">
+              <MappingFragment StoreEntitySet="ContactEnquiry">
+                <ScalarProperty Name="ContactEnquiryId" ColumnName="ContactEnquiryId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EnquiryMessage" ColumnName="EnquiryMessage" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WallFaqs">
+            <EntityTypeMapping TypeName="EnticingWallpaperDbModel.WallFaq">
+              <MappingFragment StoreEntitySet="WallFaq">
+                <ScalarProperty Name="AutoGFaqId" ColumnName="AutoGFaqId" />
+                <ScalarProperty Name="FaqId" ColumnName="FaqId" />
+                <ScalarProperty Name="FaqTitle" ColumnName="FaqTitle" />
+                <ScalarProperty Name="FaqDesc" ColumnName="FaqDesc" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Wallpapers">
+            <EntityTypeMapping TypeName="EnticingWallpaperDbModel.Wallpaper">
+              <MappingFragment StoreEntitySet="Wallpaper">
+                <ScalarProperty Name="WallpaperId" ColumnName="WallpaperId" />
+                <ScalarProperty Name="MainCategoryId" ColumnName="MainCategoryId" />
+                <ScalarProperty Name="MainCategoryName" ColumnName="MainCategoryName" />
+                <ScalarProperty Name="CatId" ColumnName="CatId" />
+                <ScalarProperty Name="CatName" ColumnName="CatName" />
+                <ScalarProperty Name="WallpaperName" ColumnName="WallpaperName" />
+                <ScalarProperty Name="SEOMainCategoryName" ColumnName="SEOMainCategoryName" />
+                <ScalarProperty Name="SEOCatName" ColumnName="SEOCatName" />
+                <ScalarProperty Name="SEOWallpaperName" ColumnName="SEOWallpaperName" />
+                <ScalarProperty Name="WallpaperImagePath" ColumnName="WallpaperImagePath" />
+                <ScalarProperty Name="WallpaperDetail" ColumnName="WallpaperDetail" />
+                <ScalarProperty Name="MetaWallTitle" ColumnName="MetaWallTitle" />
+                <ScalarProperty Name="MetaWallKeywords" ColumnName="MetaWallKeywords" />
+                <ScalarProperty Name="MetaWallDescriptions" ColumnName="MetaWallDescriptions" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WallpaperHomePageContents">
+            <EntityTypeMapping TypeName="EnticingWallpaperDbModel.WallpaperHomePageContent">
+              <MappingFragment StoreEntitySet="WallpaperHomePageContent">
+                <ScalarProperty Name="WHPContentId" ColumnName="WHPContentId" />
+                <ScalarProperty Name="TrendingThisWeek" ColumnName="TrendingThisWeek" />
+                <ScalarProperty Name="TrendingThisWeekContent" ColumnName="TrendingThisWeekContent" />
+                <ScalarProperty Name="FeaturedCategory" ColumnName="FeaturedCategory" />
+                <ScalarProperty Name="FeaturedCategoryContent" ColumnName="FeaturedCategoryContent" />
+                <ScalarProperty Name="TrendingWallpaperAlbums" ColumnName="TrendingWallpaperAlbums" />
+                <ScalarProperty Name="TrendingWallpaperAlbumsContent" ColumnName="TrendingWallpaperAlbumsContent" />
+                <ScalarProperty Name="MostViewWallpaperAlbums" ColumnName="MostViewWallpaperAlbums" />
+                <ScalarProperty Name="MostViewWallpaperAlbumsContent" ColumnName="MostViewWallpaperAlbumsContent" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

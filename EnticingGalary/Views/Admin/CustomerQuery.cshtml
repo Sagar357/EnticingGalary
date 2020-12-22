@@ -1,0 +1,82 @@
+﻿@model IEnumerable<EnticingGalary.Models.ContactEnquiry>
+
+@{
+    ViewBag.Title = "Customer Query";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="page-header pb-10 page-header-dark bg-gradient-primary-to-secondary">
+    <div class="container-fluid">
+        <div class="page-header-content">
+            <h1 class="page-header-title">
+                <div class="page-header-icon"><i data-feather="activity"></i></div>
+                <span>Customer Query</span>
+            </h1>
+           
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-n10">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example1" class="table table-responsive" style="font-size:12px;">
+                        <thead class="text-black">
+                            <tr>
+                                <th>#</th>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                   Mobile Number
+                                </th>
+                                <th>
+                                  Email
+                                </th>
+                                <th>
+                                    Query Message
+                                </th>
+                                <th>
+                                   Date
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ int i = 1;}
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@Html.Raw(i++)</td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MobileNumber)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.EnquiryMessage)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CreatedOn)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

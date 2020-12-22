@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>@ViewBag.Title</title>
+    <meta name="keywords" content="@ViewBag.MetaKeywords" />
+    <meta name="description" content="@ViewBag.MetaDescription" />
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" />
+
+    <link rel="stylesheet" href="~/Content/web/css/all.css" />
+    <link rel="stylesheet" href="~/Content/web/css/wow.css" />
+    <link rel="stylesheet" href="~/Content/web/css/scrollTop.css" />
+    <link rel="stylesheet" href="~/Content/web/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/web/css/style.css" />
+    <link rel="icon" href="https://24wallpapers.com/favicon.ico" type="image/x-icon" />
+    <script src="~/Content/web/js/jquery.min.js"></script>
+    <script src="~/Content/Pagination/Pagination.min.js"></script>
+    <style>
+        .dropdown-content {
+            display: none;
+            position: fixed;
+            /*background-color: #f9f9f9;*/
+            background-color: #fff;
+            width: 80%;
+            left: 0;
+            margin: 10px 9.5%;
+            box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.2);
+            z-index: 122;
+            transition: .5s ease-in-out;
+            height: 350px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        @@media(max-width: 767px) {
+            .dropdown-content {
+                position: absolute;
+            }
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-item {
+            padding: 8px 40px;
+            transition: .3s ease-in-out;
+            font-size: 14px;
+        }
+
+            .dropdown-item:hover {
+                background: rgb(115, 185, 44);
+                color: #fff;
+            }
+    </style>
+
+
+</head>
+<body>
+    <div id="main">
+        <header class="header-area fixed-top" id="nav" style="background: transparent; transition: all 0.7s ease 0s;">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
+                    <a href="/" class="navbar-brand">
+                        <img src="https://24wallpapers.com/Content/web/images/logo1.png" class="logo1" alt="">
+                    </a>
+
+                    <div class="sidebar">
+                        <ul class="navbar-nav">
+                            <label class="cancel font22"><i class="fa fa-times"></i></label>
+                            <li class="nav-item search-top mx-2">
+                                <div class="row">
+                                    <div class="col-sm-12 serach-top-bx">
+                                        @using (Html.BeginForm("Searchcategory", "Home"))
+                                        {
+                                            <div class="d-flex">
+                                                @Html.TextBox("id", "", new { @class = "form-control", @required = "required", @placeholder = "Search Wallpapers" })
+                                                <button type="submit" class="py-1 px-3 searchicon"><i class="fas fa-search text-white"></i></button>
+
+                                            </div>
+                                        }
+
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="nav-item dropdown mx-2">
+                                <a href="https://24wallpapers.com/categories" class="nav-link">Category</a>
+                                <div class="dropdown-content p-0">
+                                    <div class="row px-0">
+
+                                        @foreach (var item in ViewBag.DdlCategory)
+                                        {
+
+                                            <div class="col-md-3">
+                                                <a class="dropdown-item" href="@Url.Action("SubCategory", "Category", new {SEOMainCategoryName=item.SEOCategoryTypeName})">@item.CategoryTypeName</a>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <span class="bars"><i class="fas fa-bars font30"></i></span>
+                </div>
+            </nav>
+        </header>
+        @RenderBody()
+        <footer class="footer">
+            <div class="container pt-5">
+
+                <div class="row my-4">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <a href="/" style="text-decoration:none !important;">
+                            <h3 class="text-white">
+                                <span class="footlogo-24">24</span>
+                                Wallpaper
+                            </h3>
+                            <p class="text-white foot-prgh">
+                                24wallpapers is an online platform of high-quality free stock photos. We empower creativity with a creative group of photographers.
+
+                                The collection of pictures is under our authority that makes you free from all worries. A perfect image helps you in creating a business website, digital ad, or some other creative work, and it adds beauty to your work.
+
+                                It is frustrating to choose the right kind of image according to your different purpose and preferences, like a business and digital ads. There are some factors like the cost of using image, editing, and rights to use pictures, but we solve all your problems.
+                            </p>
+                        </a>
+                    </div>
+                    <div class="col-lg-1 col-md-1"></div>
+                    <div class="col-lg-5 col-md-5 col-sm-12 FooterSec">
+
+                        <h5 class="mb-4 text-white">Quick Links</h5>
+                        <p><a href="/"> <i class="fas fa-caret-right mr-2"></i>Home</a></p>
+                        <p><a href="/about-us"> <i class="fas fa-caret-right mr-2"></i>About Us</a></p>
+                        <p><a href="/contact-us"> <i class="fas fa-caret-right mr-2"></i> Contact Us</a></p>
+                        <p><a href="/faqs"> <i class="fas fa-caret-right mr-2"></i> Faq</a></p>
+                        <p><a href="/terms-and-conditions"><i class="fas fa-caret-right mr-2"></i> Terms & Conditions</a></p>
+                        <p><a href="/privacy-policy"><i class="fas fa-caret-right mr-2"></i> Privacy Policy</a></p>
+                        <p><a href="/sitemap"><i class="fas fa-caret-right mr-2"></i> Sitemap</a></p>
+                    </div>
+
+
+                </div>
+
+            </div>
+            <!-------------container-end---->
+            <div class="text-center Copyright font12 pt-3">
+                <p class="text-white">Copyright © 2020 24Wallpapers | All Rights Reserved.</p>
+            </div>
+        </footer>
+
+
+
+
+    </div>
+
+    <script src="~/Content/web/js/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <script src="https://24wallpapers.com/Content/web/js/popper.min.js"></script>
+    <script src="https://24wallpapers.com/Content/web/js/wow.js"></script>
+    <script src="https://24wallpapers.com/Content/web/js/ImgEffect.js"></script>
+    <script src="https://24wallpapers.com/Content/web/js/scrollTop.js"></script>
+    <script src="https://24wallpapers.com/Content/web/js/costume.js"></script>
+    <script>
+        $(window).ready(function () {
+
+            $(".bars").click(function () {
+                $(".sidebar").css({
+                    "margin-left": "0px",
+                    "transition": ".5s"
+                });
+            })
+            $(".cancel").click(function () {
+                $(".sidebar").css({
+                    "margin-left": "-320px",
+                    "transition": ".5s"
+                });
+            })
+        })
+    </script>
+    <script>
+        $(window).scroll(function () {
+            if ($(document).scrollTop() > 100) {
+                $('.bars').css({ "color": "rgb(44, 62, 82)" });
+            }
+            else {
+
+                $('.bars').css({ "color": "#fff" });
+            }
+        });
+    </script>
+
+    <script>
+        $('#demo').pagination({
+            dataSource: [1, 2, 3, 4, 5, 6, 7, ... , 195],
+            callback: function (data, pagination) {
+                // template method of yourself
+                var html = template(data);
+                dataContainer.html(html);
+            }
+        })
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,267 @@
+﻿@using EnticingGalary.Models
+@model IEnumerable<Wallpaper>
+
+@{
+    ViewBag.Title = @ViewBag.MetaCatTitle;
+    ViewBag.MetaKeywords = @ViewBag.MetaCatKeywords;
+    ViewBag.MetaDescription = @ViewBag.MetaCatDescription;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ 
+    int countlimit = 0;
+    if( (ViewBag.PageNo + 1) * 10 > ViewBag.WallpaperCount)
+    {
+        countlimit = ViewBag.WallpaperCount;
+    }
+    else
+    {
+        countlimit = (ViewBag.PageNo + 1) * 10;
+    }
+}
+<style>
+    .header-area {
+        background: #fff !important;
+        box-shadow: 0px 2px 3px rgba(0,0,0,0.2) !important;
+    }
+
+    .search-top {
+        display: block !important;
+    }
+
+    .bars {
+        color: rgb(44, 62, 82) !important;
+    }
+
+    .overview-social-media {
+        position: absolute;
+        bottom: 8px;
+        left: 5px;
+        width: 100%;
+    }
+
+    .share-icons {
+        height: 40px;
+        width: 40px;
+        border-radius: 5px;
+        padding: 10px;
+        color: rgb(196, 192, 192);
+        border: .5px solid rgb(196, 192, 192);
+        /* transition: .5s ease-in-out; */
+    }
+
+        .share-icons:hover {
+            color: rgb(252, 249, 249);
+            border: 1.5px solid rgb(252, 249, 249);
+        }
+</style>
+
+<br />
+<br />
+<br />
+
+<div class="image-view-section px-3 my-5">
+    <div class="container-fluid">
+        <div class="row text-center">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- horizontal -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:100%;height:170px"
+                 data-ad-client="ca-pub-6940190588220355"
+                 data-ad-slot="8563710137"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-2">
+                <div class="row text-center">
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- horizontal -->
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:100%;height:100%"
+                         data-ad-client="ca-pub-6940190588220355"
+                         data-ad-slot="8563710137"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="view-hd-line">
+                    <h3 class="text-white">@ViewBag.MainCategorName / @ViewBag.SubCategoryName</h3>
+                </div>
+                <div class="image-view mt-4">
+                    <p class="text-justify">
+                        @(new HtmlString(@ViewBag.CategoryDescription))
+                    </p>
+                    @if (ViewBag.NoWallpaper == "NA")
+                    {
+                        <div class="card-header justify-content-center">
+                            <h4 class="text-primary font-weight-light mb-0 text-center">There is no match wallpaper with category.</h4>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="row paging">
+                            @{ int i = 1;}
+                            @foreach (var item in Model)
+                            {
+                                if (i % 3 == 0)
+                                {
+                                    <div class="col-sm-12 p-0 my-2">
+                                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                        <ins class="adsbygoogle"
+                                             style="display:inline-block;width:100%;height:300px"
+                                             data-ad-client="ca-pub-6940190588220355"
+                                             data-ad-slot="3802338042"></ins>
+                                        <script>
+                                            (adsbygoogle = window.adsbygoogle || []).push({});
+                                        </script>
+                                    </div>
+                                }
+
+                                <div class="col-sm-12 p-0 my-2">
+                                    <img src="@Url.Content(item.WallpaperImagePath)" data-secret="@Url.Content(item.WallpaperImagePath)" class="img-full-view" alt="@item.WallpaperName" style="border-radius:6px;" />
+                                    <div class="image-view-effect1">
+                                        <div class="row p-3">
+                                            <div class="col-lg-6 col-md-6 col-6 d-flex">
+                                                <img src="@Url.Content(item.WallpaperImagePath)" data-secret="@Url.Content(item.WallpaperImagePath)" alt="@item.WallpaperName" class="mdl-sm-img" />
+                                                <span class="mt-2 ml-3">
+                                                    <a href="#" class="text-white font-weight-bold">@item.WallpaperName</a><br>
+                                                </span>
+                                            </div>
+
+                                            <div class="col-lg-6 col-md-6 col-6 text-right">
+                                                <span>
+                                                    <a href="@Url.Content(item.WallpaperImagePath)" download class="btn btn-md btn-success ml-3"><i class="fas fa-download mr-1"></i><span class="download-btn">Download</span></a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="overview-social-media">
+                                        <div class="d-flex justify-content-right">
+                                            <a href="http://www.facebook.com/sharer.php?u=@Url.Content(item.WallpaperImagePath)" title="share on facebook" class="share-icons mr-1 ml-1">
+                                                <i class="fab fa-facebook-f font18"></i>
+                                            </a>
+                                            <a href="http://twitter.com/share?url=@Url.Content(item.WallpaperImagePath)" title="share on twitter" class="share-icons mr-1 ml-1">
+                                                <i class="fab fa-twitter font18"></i>
+                                            </a>
+                                            <a href="http://www.linkedin.com/shareArticle?mini=true&url=@Url.Content(item.WallpaperImagePath)" class="share-icons mr-1 ml-1">
+                                                <i class="fab fa-linkedin-in font18"></i>
+                                            </a>
+                                            <a style="display:none;" href="#" class="share-icons mr-1 ml-1">
+                                                <i class="fab fa-instagram font18"></i>
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                    <span style="display:none;">@Html.Raw(i++)</span>
+                                </div>
+                            }
+                        </div>
+                    }
+
+                    <p class="text-justify">
+                        @(new HtmlString(@ViewBag.CategoryDescriptionBottom))
+                    </p>
+
+                  
+                    <div class="row">
+                    <div class="col-sm-12 col-md-5">
+                        <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">
+                            Showing @((ViewBag.PageNo * 10) + 1) to @countlimit of @ViewBag.WallpaperCount  entries
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-12 col-md-7">
+                        <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                            <ul class="pagination">
+                                <li class="paginate_button page-item previous" id="example1_previous">
+                                    <a aria-controls="example1" data-dt-idx="0" tabindex="0" href="@Url.Action("SubCategoryDetail", "Category", new { SEOCategoryName = ViewBag.SeoCatName ,PageNumber=(ViewBag.PageNo-1)})" class="page-link">
+                                        Previous
+                                    </a>
+                                </li>
+                                @if (ViewBag.PageNo >= 1)
+                                {
+                                    <li class="paginate_button page-item active">
+                                        <a class="page-link" href="@Url.Action("SubCategoryDetail", "Category", new { SEOCategoryName = ViewBag.SeoCatName ,PageNumber=(ViewBag.PageNo-1)})" aria-controls="example1" data-dt-idx="1" tabindex="0" >@(ViewBag.PageNo-1)</a>
+                                    </li>
+
+                                }
+                                <li class="paginate_button page-item active">
+                                    <a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0" class="page-link">@ViewBag.PageNo</a>
+                                </li>
+                                @if (ViewBag.PageNo < ViewBag.Pagecount)
+                                {
+
+                                    <li class="paginate_button page-item active">
+                                        <a href="@Url.Action("SubCategoryDetail", "Category", new { SEOCategoryName = ViewBag.SeoCatName ,PageNumber=(ViewBag.PageNo+1)})" aria-controls="example1" data-dt-idx="1" tabindex="0" class="page-link">@(ViewBag.PageNo+1)</a>
+                                    </li>
+                                }
+                                <li class="paginate_button page-item previous" id="example1_previous">
+                                    <a  href="@Url.Action("SubCategoryDetail", "Category", new { SEOCategoryName = ViewBag.SeoCatName ,PageNumber=(ViewBag.PageNo+1)})" aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">
+                                        Next
+                                    </a>
+                                </li>
+                                @*<li class="paginate_button page-item active">
+            <a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0" class="page-link">1</a>
+        </li>
+        <li class="paginate_button page-item ">
+            <a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0" class="page-link">2</a>
+        </li>
+        <li class="paginate_button page-item ">
+        <a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0" class="page-link">3</a>
+        </li>
+        <li class="paginate_button page-item ">
+        <a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0" class="page-link">4</a>
+        </li>
+        <li class="paginate_button page-item next" id="example1_next">
+        <a href="#" aria-controls="example1" data-dt-idx="5" tabindex="0" class="page-link">Next</a>
+        </li>*@
+                            </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="row text-center">
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- horizontal -->
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:100%;height:100%"
+                         data-ad-client="ca-pub-6940190588220355"
+                         data-ad-slot="8563710137"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+
+                </div>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="row text-center">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- horizontal -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:100%;height:170px"
+                     data-ad-client="ca-pub-6940190588220355"
+                     data-ad-slot="8563710137"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,117 @@
+﻿@using EnticingGalary.ViewModels
+@model AdminLoginViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Admin - Login</title>
+
+    <link href="~/Content/Admin/css/styles.css" rel="stylesheet" />
+    <link href="https:/cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <link rel="icon" type="image/x-icon" href="https://24wallpapers.com/favicon.ico" />
+    <script data-search-pseudo-elements defer src="https:/cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https:/cdnjs.cloudflare.com/ajax/libs/feather-icons/4.24.1/feather.min.js" crossorigin="anonymous"></script>
+
+</head>
+<body class="bg-primary">
+    <div id="layoutAuthentication">
+        <div id="layoutAuthentication_content">
+            <main>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-5">
+                            <div class="card shadow-lg border-0 rounded-lg mt-5">
+
+                                <div class="card-header justify-content-center">
+                                    <div class="text-center">
+                                        <img src="https://24wallpapers.com/Content/web/images/logo1.png" alt="Logo" />
+                                    </div>
+                                </div>
+                                <h3 class="font-weight-light mt-5 mb-0 text-center">Admin Login</h3>
+
+                                <div class="card-body mt-0">
+                                    @if (@ViewBag.Message != null)
+                                    {
+                                        <div style="border: 1px solid red">
+                                            @ViewBag.Message
+                                        </div>
+                                    }
+
+
+                                    @using (Html.BeginForm("Index", "AdminLogin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                    {
+
+                                        @Html.AntiForgeryToken()
+                                        <p>@Html.ValidationSummary(true, "", new { @class = "text-danger" })</p>
+
+
+                                        <div class="input-group mb-3">
+                                            @Html.TextBoxFor(a => a.EmailId, new { @class = "form-control", @placeholder = "Email" })
+                                            @Html.ValidationMessageFor(a => a.EmailId)
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fas fa-envelope"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            @Html.PasswordFor(a => a.AdminPwd, new { @class = "form-control", @placeholder = "Password" })
+                                            @Html.ValidationMessageFor(a => a.AdminPwd)
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fas fa-lock"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-8">
+                                                <div class="icheck-primary">
+                                                    <input type="checkbox" id="remember">
+                                                    <label for="remember">
+                                                        Remember Me
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <!-- /.col -->
+                                            <div class="col-4">
+                                                <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                                            </div>
+                                            <!-- /.col -->
+                                        </div>
+                                    }
+                                </div>
+                                <div class="card-footer text-center">
+                                    <div class="small"><a href="@Url.Action("Index","Home")" target="_blank">Go To Main Website</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <div id="layoutAuthentication_footer">
+            <footer class="footer mt-auto footer-dark">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 small">Copyright &#xA9; 24Wallpapers 2020</div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="~/Content/Admin/js/scripts.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    <script src="~/Content/Admin/assets/demo/datatables-demo.js"></script>
+    <script src="~/Content/Admin/js/sb-customizer.js"></script>
+
+</body>
+</html>

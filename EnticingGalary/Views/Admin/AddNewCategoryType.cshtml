@@ -1,0 +1,128 @@
+﻿@using EnticingGalary.Models;
+@model CategoryType
+
+@{
+    ViewBag.Title = "Add New Main Category";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header pb-10 page-header-dark bg-gradient-primary-to-secondary">
+    <div class="container-fluid">
+        <div class="page-header-content">
+            <div class="page-header-title">
+                <div class="page-header-icon"><i data-feather="activity"></i></div>
+                <span>Add New Main Category</span>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-n10">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+
+                <div class="card-header">
+                    <a style="color:#fff;" class="btn btn-primary" href="@Url.Action("CategoryType","Admin")"><i class="fas fa-plus"></i>&nbsp;Back To List</a>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("AddNewCategoryType", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                        <div class="form-group">
+                            @Html.Label("Main Category Name", htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.CategoryTypeName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.CategoryTypeName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Main Category Image", htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                <input type="file" name="categorytypeimage" id="categorytypeimage" class="form-control" accept="image/gif, image/jpeg, image/png" />
+                                @Html.ValidationMessageFor(model => model.CategoryTypeBannerImage, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-12">Main Category Url eg. anime-abcd</label>
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.SEOCategoryTypeName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.SEOCategoryTypeName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Main Category Meta Title", htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.MetaCTTitle, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.MetaCTTitle, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Main Category Meta Keywords", htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.MetaCTKeywords, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.MetaCTKeywords, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Main Category Meta Description", htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.TextAreaFor(model => model.MetaCTDescriptions, new { @class = "form-control", col = 4, row = 5, @style = "resize:none;" })
+                                @Html.ValidationMessageFor(model => model.MetaCTDescriptions, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            @Html.Label("Main Category Content", htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.TextAreaFor(model => model.CategoryTypeContent, new { @class = "form-control summernote" })
+                                @Html.ValidationMessageFor(model => model.CategoryTypeContent, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Add Main Category" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+@if (ViewBag.SM != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            sweetAlert({
+                title: "Congratulations!!",
+                text: "Main Category Add Successfully...",
+                type: "success",
+                confirmButtonClass: "btn-success",
+                confirmButtonText: "Thank You"
+            },
+    function (isConfirm) {
+        if (isConfirm) {
+            window.location.href = '@Url.Action("AddNewCategoryType", "Admin")';
+        } else {
+            window.location.href = '@Url.Action("AddNewCategoryType", "Admin")';
+        }
+    });
+        };
+    </script>
+}

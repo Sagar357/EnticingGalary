@@ -1,0 +1,24 @@
+#back2Top 
+{
+  width: 40px;
+  line-height: 40px;
+  overflow: hidden;
+  z-index: 999;
+  display: none;
+  cursor: pointer;
+  -moz-transform: rotate(270deg);
+  -webkit-transform: rotate(270deg);
+  -o-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  transform: rotate(270deg);
+  position: fixed;
+  bottom: 20px;
+  right: 10px;
+  float: right !important;
+  background-color:  rgb(92, 159, 235);
+  color: #fff;
+  text-align: center;
+  font-size: 22px;
+  text-decoration: none;
+  border-radius: 50%;
+}

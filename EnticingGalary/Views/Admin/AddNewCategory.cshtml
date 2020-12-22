@@ -1,0 +1,150 @@
+﻿@using EnticingGalary.Models;
+@model Category
+
+@{
+    ViewBag.Title = "Add New Sub Category";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+ @*
+ Chnage Log:
+ * code ,name ,description ,date
+ * ====================================================================================================
+    #CC01 ,Sagar Srivastava ,Textbox with the content editor to be added in subcategory wallpaper pages at the very bottom above similar posts. ,29-10-2020
+ *@
+
+<div class="page-header pb-10 page-header-dark bg-gradient-primary-to-secondary">
+    <div class="container-fluid">
+        <div class="page-header-content">
+            <h1 class="page-header-title">
+                <div class="page-header-icon"><i data-feather="activity"></i></div>
+                <span>Add New Sub Category</span>
+            </h1>
+
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-n10">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+
+                <div class="card-header">
+                    <a style="color:#fff;" class="btn btn-primary" href="@Url.Action("Category","Admin")"><i class="fas fa-plus"></i>&nbsp;Back To List</a>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("AddNewCategory", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                        <div class="form-group">
+                            @Html.Label("Select Main Category", htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.DropDownList("CategoryTypeId", (IEnumerable<SelectListItem>)ViewBag.CategoryTypeId, "Select Category Type", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.CategoryTypeId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Sub Category Name", htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.CategoryName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-12">Sub Category Url eg. anime-abcd</label>
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.SEOCategoryName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.SEOCategoryName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Sub Category Image", htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                <input type="file" name="categoryimage" id="categoryimage" class="form-control" accept="image/gif, image/jpeg, image/png" />
+                                @Html.ValidationMessageFor(model => model.CategoryImagePath, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Sub Category Content(Top)", htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.TextAreaFor(model => model.CategoryDescription, new { @class = "form-control summernote" })
+                                @Html.ValidationMessageFor(model => model.CategoryDescription, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <!--#CC01 start-->
+                        <div class="form-group">
+                            @Html.Label("Sub Category Content(Bottom)", htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.TextAreaFor(model => model.CategoryDescriptionBottom, new { @class = "form-control summernote" })
+                                @Html.ValidationMessageFor(model => model.CategoryDescriptionBottom, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <!--#CC01 end-->
+
+                        <div class="form-group">
+                            @Html.Label("Sub Category Meta Title", htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.MetaCatTitle, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.MetaCatTitle, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Sub Category Meta Keywords", htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.MetaCatKeywords, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.MetaCatKeywords, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Sub Category Meta Description", htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.TextAreaFor(model => model.MetaCatDescription, new { @class = "form-control", @row = "4", @col = "4", @style = "resize:none;" })
+                                @Html.ValidationMessageFor(model => model.MetaCatDescription, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Add Sub Category" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+@if (ViewBag.SM != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            sweetAlert({
+                title: "Congratulations!!",
+                text: "Category Add Successfully...",
+                type: "success",
+                confirmButtonClass: "btn-success",
+                confirmButtonText: "Thank You"
+            },
+    function (isConfirm) {
+        if (isConfirm) {
+            window.location.href = '@Url.Action("AddNewCategory", "Admin")';
+        } else {
+            window.location.href = '@Url.Action("AddNewCategory", "Admin")';
+        }
+    });
+        };
+    </script>
+}

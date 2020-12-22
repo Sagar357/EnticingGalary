@@ -1,0 +1,177 @@
+﻿@model IEnumerable<EnticingGalary.Models.Wallpaper>
+
+@{
+    ViewBag.Title = "Wallpaper";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header pb-10 page-header-dark bg-gradient-primary-to-secondary">
+    <div class="container-fluid">
+        <div class="page-header-content">
+            <h1 class="page-header-title">
+                <div class="page-header-icon"><i data-feather="activity"></i></div>
+                <span>Wallpaper</span>
+            </h1>
+
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-n10">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+
+                <div class="card-header">
+                    <a style="color:#fff;" class="btn btn-primary" href="@Url.Action("AddNewWallpaper","Admin")"><i class="fas fa-plus"></i>&nbsp;Add New Wallpaper</a>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    @using (Html.BeginForm("Wallpaper", "Admin", FormMethod.Post))
+                    {
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <button type="submit" value="Delete" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure to delete wallaper?')"><i class="fa fa-trash"></i>&nbsp;Delete Wallpaper</button>
+
+                        <br />
+                        <br />
+                        <table id="example1" class="table table-responsive" style="font-size:12px;">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        #
+                                    </th>
+                                    <th>
+                                        <input type="checkbox" id="checkBoxAll" class="custom-checkbox" />&nbsp;All
+                                    </th>
+                                    <th>
+                                        Main Category
+                                    </th>
+                                    <th>
+                                        Sub Category
+                                    </th>
+                                    <th>
+                                        Wallpaper Name
+                                    </th>
+                                    <th>
+                                        Wallpaper Image
+                                    </th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{ int i = 1;}
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@Html.Raw(i++)</td>
+                                        <td>
+                                            <input type="checkbox" name="ID" value="@item.WallpaperId" class="custom-checkbox chkCheckBoxId" />
+                                         
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MainCategoryName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CatName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.WallpaperName)
+                                        </td>
+                                        <td>
+                                            <img src="@Url.Content(item.WallpaperImagePath)" data-secret="@Url.Content(item.WallpaperImagePath)" alt="@item.WallpaperName" width="80" height="80" />
+                                        </td>
+                                        <td>
+                                            <a class="DeleteCss" style="color:red !important;font-size:20px;" href="@Url.Action("DeleteWallpaper", "Admin", new { id = item.WallpaperId })" title="delete"><i class="fa fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                                    }
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+</div>
+
+@section deletescript
+{
+    <script>
+        $('body').on('click', 'a.DeleteCss', function (e) {
+            e.preventDefault();
+            var DeleteUrl = $(this).attr("href");
+            if (confirm("Are you sure wants to delete ?.")) {
+                $.ajax(
+                {
+                    url: DeleteUrl,
+                    dataType: "json",
+                    type: "POST",
+                    contentType: "application/json",
+                    error: function (err) {
+                        alert('Unable to delete record.');
+                    },
+                    success: function (response) {
+                        sweetAlert({
+                            title: "Congratulations!!",
+                            text: "Wallpaper Deleted Successfully...",
+                            type: "success",
+                            confirmButtonClass: "btn-success",
+                            confirmButtonText: "Thank You"
+                        },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        window.location.href = '@Url.Action("Wallpaper", "Admin")';
+                    } else {
+                        window.location.href = '@Url.Action("Wallpaper", "Admin")';
+                    }
+                });
+
+                    }
+                });
+            }
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#example1').DataTable();
+            $('#checkBoxAll').click(function () {
+                if ($(this).is(":checked")) {
+                    $(".chkCheckBoxId").prop("checked", true)
+                    var check = $(".chkCheckBoxId").val;
+                }
+                else {
+                    $(".chkCheckBoxId").prop("checked", false)
+                }
+            });
+        });
+    </script>
+
+}
+
+@if (ViewBag.SMW != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            sweetAlert({
+                title: "Congratulations!!",
+                text: "Wallpaper Deletd Successfully...",
+                type: "success",
+                confirmButtonClass: "btn-success",
+                confirmButtonText: "Thank You"
+            },
+    function (isConfirm) {
+        if (isConfirm) {
+            window.location.href = '@Url.Action("Wallpaper", "Admin")';
+        } else {
+            window.location.href = '@Url.Action("Wallpaper", "Admin")';
+        }
+    });
+        };
+    </script>
+}
+
+

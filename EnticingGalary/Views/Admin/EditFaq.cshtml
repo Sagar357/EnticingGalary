@@ -1,0 +1,94 @@
+﻿@using EnticingGalary.Models;
+@model WallFaq
+
+@{
+    ViewBag.Title = "Add New Faq";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header pb-10 page-header-dark bg-gradient-primary-to-secondary">
+    <div class="container-fluid">
+        <div class="page-header-content">
+            <div class="page-header-title">
+                <div class="page-header-icon"><i data-feather="activity"></i></div>
+                <span>Add New Faq</span>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-n10">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+
+                <div class="card-header">
+                    <a style="color:#fff;" class="btn btn-primary" href="@Url.Action("Faqs","Admin")"><i class="fas fa-plus"></i>&nbsp;Back To List</a>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("EditFaq", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.HiddenFor(m => m.FaqId)
+                        @Html.HiddenFor(m => m.AutoGFaqId)
+                        @Html.HiddenFor(m => m.CreatedOn)
+
+                        @Html.AntiForgeryToken()
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                            <div class="form-group">
+                                @Html.Label("Faq Title", htmlAttributes: new { @class = "control-label col-md-12" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.FaqTitle, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.FaqTitle, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-12">Description</label>
+                                <div class="col-md-12">
+                                    @Html.TextAreaFor(model => model.FaqDesc, new { @class = "form-control summernote" })
+                                    @Html.ValidationMessageFor(model => model.FaqDesc, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Update Faq" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+@if (ViewBag.SM != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            sweetAlert({
+                title: "Congratulations!!",
+                text: "Faq Edit Successfully...",
+                type: "success",
+                confirmButtonClass: "btn-success",
+                confirmButtonText: "Thank You"
+            },
+    function (isConfirm) {
+        if (isConfirm) {
+            window.location.href = '@Url.Action("Faqs", "Admin")';
+        } else {
+            window.location.href = '@Url.Action("Faqs", "Admin")';
+        }
+    });
+        };
+    </script>
+}

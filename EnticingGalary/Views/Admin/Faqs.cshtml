@@ -1,0 +1,84 @@
+﻿@model IEnumerable<EnticingGalary.Models.WallFaq>
+
+@{
+    ViewBag.Title = "Faqs";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header pb-10 page-header-dark bg-gradient-primary-to-secondary">
+    <div class="container-fluid">
+        <div class="page-header-content">
+            <h1 class="page-header-title">
+                <div class="page-header-icon"><i data-feather="activity"></i></div>
+                <span>Faqs</span>
+            </h1>
+
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mt-n10">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <a style="color:#fff;" class="btn btn-primary" href="@Url.Action("AddNewFaq","Admin")"><i class="fas fa-plus"></i>&nbsp;Add New Faq</a>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example1" class="table table-responsive" style="font-size:12px;">
+                        <thead>
+                            <tr>
+                                <th>
+                                    #
+                                </th>
+
+                                <th>Action</th>
+                                <th>
+                                    Title
+                                </th>
+                                <th>
+                                    Description
+                                </th>
+                                <th>
+                                    Date
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbody">
+
+                            @{ int i = 1;}
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>@Html.Raw(i++)</td>
+
+                                <td>
+                                    <a title="edit" style="color:blue !important;font-size:20px;text-decoration:none;" href="@Url.Action("EditFaq", "Admin", new { id =item.FaqId })">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FaqTitle)
+                                </td>
+                                <td>
+                                    @if (item.FaqDesc != null)
+                                    {
+                                        @(new HtmlString(item.FaqDesc))
+                                    }
+                                </td>
+                                <td>
+
+                                    @Html.DisplayFor(modelItem => item.CreatedOn)
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

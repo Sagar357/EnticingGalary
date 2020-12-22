@@ -1,0 +1,206 @@
+﻿
+@{
+    ViewBag.Title = "Redirect to Another Link";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@model EnticingGalary.ViewModels.Redirect_List
+
+@*
+    Author:Sagar Srivastava ,
+    * Aim:A section on the admin page for redirection of links is to be added. So, that from the admin panel any source URL in our site can be redirected to any target URL on our website.
+    * Created Date:29-10-2020,
+    * Chnage Log:
+    * code ,name ,description ,date
+    * ====================================================================================================
+*@
+
+@{ 
+
+    string source = "";
+    string destination = "";
+    if (!string.IsNullOrEmpty(ViewBag.source))
+    {
+        source = ViewBag.source;
+    }
+    else
+    {
+        source = "Select Source Sub Category";
+    }
+     if (!string.IsNullOrEmpty(ViewBag.destination))
+    {
+        destination = ViewBag.destination;
+    }
+    else
+    {
+        destination = "Select Destination Sub Category";
+    }
+}
+
+
+<div class="page-header pb-10 page-header-dark bg-gradient-primary-to-secondary">
+    <div class="container-fluid">
+        <div class="page-header-content">
+            <h1 class="page-header-title">
+                <div class="page-header-icon"><i data-feather="activity"></i></div>
+                <span>Redirect to Another Link</span>
+            </h1>
+
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-n10">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+
+                <div class="card-header">
+                    <a style="color:#fff;" class="btn btn-primary" href="@Url.Action("Index", "Redirect")"><i class="fas fa-plus"></i>&nbsp;Back to List</a>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("Edit", "Redirect", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                            <div class="form-group">
+                                @Html.Label("Select Source Sub Category", htmlAttributes: new { @class = "control-label col-md-12" })
+                                <div class="col-md-12">
+
+                                    @Html.DropDownList("SourceCategoryId", ViewBag.CategoryId as SelectList, source, htmlAttributes: new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Select Destination Sub Category", htmlAttributes: new { @class = "control-label col-md-12" })
+                                <div class="col-md-12">
+
+                                    @Html.DropDownList("DestinationCategoryId", ViewBag.CategoryId as SelectList, destination, htmlAttributes: new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Update Sub Category" class="btn btn-primary" />
+                                </div>
+                            </div>
+                            <div style="height:100px;">
+
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="container-fluid mt-n10">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                @*<div class="card-header">
+                    <a style="color:#fff;" class="btn btn-primary" href="@Url.Action("AddNewCategory", "Admin")"><i class="fas fa-plus"></i>&nbsp;Add New Sub Category</a>
+                </div>*@
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example1" class="table table-responsive" style="font-size:12px;">
+                        <thead>
+                            <tr>
+                                <th>
+                                    #
+                                </th>
+                               
+                                <th>
+                                    Source Sub Category
+                                </th>
+                             
+                                <th>
+                                    Destination Sub Category
+                                </th>
+                                <th>
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbody">
+                            @{ int i = 1; }
+                                @foreach (var x in Model.List)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.Raw(i++)
+                                        </td>
+                                        <td>
+                                            @x.CategoryName
+                                        </td>
+
+                                        <td>
+                                            @x.alias
+                                        </td>
+                                        <td>
+                                            <a title="edit" style="color:blue !important;font-size:20px;text-decoration:none;" href="@Url.Action("EditLink" ,"Redirect" ,new { id=x.CategoryId })">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            || <a class="DeleteCss" style="color:red !important;font-size:20px;text-decoration:none;" href="@Url.Action("Delete" ,"Redirect" ,new { id=x.CategoryId })" title="delete"><i class="fa fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@if (ViewBag.Message == "Updated")
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            sweetAlert({
+                title: "Congratulations!!",
+                text: "Sub Category Edit Successfully...",
+                type: "success",
+                confirmButtonClass: "btn-success",
+                confirmButtonText: "Thank You"
+            },
+    function (isConfirm) {
+        if (isConfirm) {
+            window.location.href = '@Url.Action("Index", "Redirect")';
+        } else {
+            window.location.href = '@Url.Action("Index", "Redirect")';
+        }
+    });
+        };
+    </script>
+}
+
+@if(ViewBag.Message == "Deleted")
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            sweetAlert({
+                title: "Congratulations!!",
+                text: "Redirect Link Deleted Successfully...",
+                type: "success",
+                confirmButtonClass: "btn-success",
+                confirmButtonText: "Thank You"
+            },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        window.location.href = '@Url.Action("Index" ,"Redirect")';
+                    } else {
+                        window.location.href = '@Url.Action("Index" ,"Redirect")';
+                    }
+                });
+        };
+
+    </script>
+}
+

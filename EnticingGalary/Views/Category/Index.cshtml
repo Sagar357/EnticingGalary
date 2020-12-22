@@ -1,0 +1,98 @@
+﻿@model IEnumerable<EnticingGalary.Models.CategoryType>
+
+@{
+    ViewBag.Title = "24wallpapers | High Quality Wallpapers | Free Wallpaper Photos";
+    ViewBag.MetaKeywords = "wallpapers stock photos, free wallpaper photos download, free wallpaper desktop, Free Wallpapers Download, free high resolution wallpaper, free stock photos, high quality pictures, High Quality Images, high quality wallpapers";
+    ViewBag.MetaDescription = "This is the specific section of 24wallpapers where you search for the High Quality Wallpapers Categories and easily download it.";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .header-area {
+        background: #fff !important;
+        box-shadow: 0px 2px 3px rgba(0,0,0,0.2) !important;
+    }
+
+    .search-top {
+        display: block !important;
+    }
+
+    .bars {
+        color: rgb(44, 62, 82) !important;
+    }
+
+
+    .all-category-type {
+        overflow-x: auto;
+        height: auto;
+        padding: 5px 0px;
+    }
+
+        .all-category-type::-webkit-scrollbar {
+            height: 10px;
+            background: #D3CECE;
+            border-radius: 5px;
+        }
+
+        .all-category-type::-webkit-scrollbar-thumb {
+            background: #525861;
+            border-radius: 5px;
+        }
+</style>
+
+<br />
+<br />
+<br />
+
+
+<section class="third-section my-5">
+    <div class="container">
+        <h4>Categories</h4>
+        <div class="all-category-type d-flex justify-content-between">
+            @foreach (var categorytypelist in Model)
+            {
+                <a href="@Url.Action("SubCategory", "Category", new {SEOMainCategoryName=categorytypelist.SEOCategoryTypeName})" class="image-types d-flex border py-2 px-3 ml-1 mr-1">
+                    <img src="@Url.Content(categorytypelist.CategoryTypeBannerImage)" data-secret="@Url.Content(categorytypelist.CategoryTypeBannerImage)" alt="@categorytypelist.CategoryTypeName" title="@categorytypelist.CategoryTypeName" />
+                    <h6 class="mt-1 ml-2">@categorytypelist.CategoryTypeName</h6>
+                </a>
+            }
+        </div>
+    </div>
+</section>
+
+
+
+<section class="fourth-section my-5">
+    <div class="container">
+        <div class="row">
+            @foreach (var categorytypelist in Model)
+            {
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12 my-3">
+                    <a href="@Url.Action("SubCategory", "Category", new {SEOMainCategoryName=categorytypelist.SEOCategoryTypeName})">
+                    <div class="grid border p-3 rounded">
+                    <img src="@Url.Content(categorytypelist.CategoryTypeBannerImage)" data-secret="@Url.Content(categorytypelist.CategoryTypeBannerImage)" alt="@categorytypelist.CategoryTypeName" title="@categorytypelist.CategoryTypeName" class="grid-images" />
+                    <div class="d-flex my-1">
+                    <div class="col-sm-3 p-1">
+                    <img src="@Url.Content(categorytypelist.CategoryTypeBannerImage)" data-secret="@Url.Content(categorytypelist.CategoryTypeBannerImage)" alt="@categorytypelist.CategoryTypeName" title="@categorytypelist.CategoryTypeName" class="grid-sm-img" />
+                    </div>
+                    <div class="col-sm-3 p-1">
+                    <img src="@Url.Content(categorytypelist.CategoryTypeBannerImage)" data-secret="@Url.Content(categorytypelist.CategoryTypeBannerImage)" alt="@categorytypelist.CategoryTypeName" title="@categorytypelist.CategoryTypeName" class="grid-sm-img" />
+                    </div>
+                    <div class="col-sm-3 p-1">
+                    <img src="@Url.Content(categorytypelist.CategoryTypeBannerImage)" data-secret="@Url.Content(categorytypelist.CategoryTypeBannerImage)" alt="@categorytypelist.CategoryTypeName" title="@categorytypelist.CategoryTypeName" class="grid-sm-img" />
+                    </div>
+                    <div class="col-sm-3 p-1">
+                    <img src="@Url.Content(categorytypelist.CategoryTypeBannerImage)" data-secret="@Url.Content(categorytypelist.CategoryTypeBannerImage)" alt="@categorytypelist.CategoryTypeName" title="@categorytypelist.CategoryTypeName" class="grid-sm-img" />
+                    </div>
+                    </div>
+                    <h4 style="text-align:center;font-size:14px;">@categorytypelist.CategoryTypeName</h4>
+                    </div>
+                    </a>
+                </div>
+            }
+        </div>
+
+    </div>
+</section>
+
+

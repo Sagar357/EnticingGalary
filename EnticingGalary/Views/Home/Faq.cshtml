@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.MetaKeywords = "wallpapers stock photos, free wallpaper photos download, free wallpaper desktop, Free Wallpapers Download, free high resolution wallpaper, free stock photos, high quality pictures, High Quality Images, high quality wallpapers";
+    ViewBag.MetaDescription = "24Wallpapers faq.";
+    ViewBag.Title = "24wallpapers | Free Wallpaper Desktop | Wallpaper Photos | Faq";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<br />
+
+<section class="Faq-section mb-4">
+    <div class="container">
+        <div class="text-center">
+            <h1 class="text-white display-4 font-weight-bold">24Wallpapers Faq</h1>
+        </div>
+    </div>
+</section>
+
+
+<section class="second-section mt-5">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-sm-6 hd-line">
+                <h3 class="after-effect">Frequently Asked Questions</h3>
+            </div>
+        </div>
+        <br />
+        <div id="accordion">
+            @{ int i = 1;}
+            @foreach (var item in ViewBag.FaqList)
+            {
+                if (i == 1)
+                {
+                    <div class="card">
+                        <div class="card-header bg-success">
+                            <a class="card-link text-white" data-toggle="collapse" href="#@item.AutoGFaqId">
+                                #@Html.Raw(i++).&nbsp;@item.FaqTitle
+                            </a>
+                        </div>
+                        <div id="@item.AutoGFaqId" class="collapse show" data-parent="#accordion">
+                            <div class="card-body">
+                                @if (item.FaqDesc != null)
+                                {
+                                    @(new HtmlString(item.FaqDesc))
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="card">
+                        <div class="card-header">
+                            <a class="card-link" data-toggle="collapse" href="#@item.AutoGFaqId">
+                                #@Html.Raw(i++).&nbsp;@item.FaqTitle
+                            </a>
+                        </div>
+                        <div id="@item.AutoGFaqId" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                @if (item.FaqDesc != null)
+                                {
+                                    @(new HtmlString(item.FaqDesc))
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            }
+
+
+
+        </div>
+    </div>
+</section>
+
+
+
+
+
+

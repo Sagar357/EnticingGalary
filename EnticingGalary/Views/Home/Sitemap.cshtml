@@ -1,0 +1,143 @@
+﻿
+@{
+    ViewBag.MetaKeywords = "wallpapers stock photos, free wallpaper photos download, free wallpaper desktop, Free Wallpapers Download, free high resolution wallpaper, free stock photos, high quality pictures, High Quality Images, high quality wallpapers";
+    ViewBag.MetaDescription = "24Wallpapers sitemap.";
+    ViewBag.Title = "24wallpapers | Free Wallpaper Desktop | Wallpaper Photos | Sitemap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<br />
+
+<section class="Sitemap-section mb-4">
+    <div class="container">
+        <div class="text-center">
+            <h1 class="text-white display-4 font-weight-bold">24Wallpapers Sitemap</h1>
+        </div>
+    </div>
+</section>
+
+<section class="sitemap-categories-section my-5">
+    <div class="container">
+        <h4 class="mb-3">Main Link</h4>
+
+        <ul>
+            <li>
+                <a href="https://24wallpapers.com/" target="_blank" class="category-link">Home<i class="fas fa-paper-plane font12 ml-2"></i></a>
+            </li>
+            <li>
+                <a href="https://24wallpapers.com/categories" target="_blank" class="category-link">Categories<i class="fas fa-paper-plane font12 ml-2"></i></a>
+            </li>
+            <li>
+                <a href="https://24wallpapers.com/about-us" target="_blank" class="category-link">About Us<i class="fas fa-paper-plane font12 ml-2"></i></a>
+            </li>
+            <li>
+                <a href="https://24wallpapers.com/contact-us" target="_blank" class="category-link">Contact Us<i class="fas fa-paper-plane font12 ml-2"></i></a>
+            </li>
+            <li>
+                <a href="https://24wallpapers.com/faqs" target="_blank" class="category-link">Faq<i class="fas fa-paper-plane font12 ml-2"></i></a>
+            </li>
+            <li>
+                <a href="https://24wallpapers.com/terms-and-conditions" target="_blank" class="category-link">Terms & Conditions<i class="fas fa-paper-plane font12 ml-2"></i></a>
+            </li>
+            <li>
+                <a href="https://24wallpapers.com/privacy-policy" target="_blank" class="category-link">Priacy Policy<i class="fas fa-paper-plane font12 ml-2"></i></a>
+            </li>
+        </ul>
+        <br />
+        <h4 class="mb-3">Category Wallpaper Link</h4>
+
+        <table class="table table-responsive" style="font-size:12px;">
+            <thead>
+                <tr>
+                    <th>
+                        #
+                    </th>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Link
+                    </th>
+                    <th>
+                        Date
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @{ int i = 1;}
+                @foreach (var item in ViewBag.MainCategory)
+                {
+                    <tr>
+                        <td>@Html.Raw(i++)</td>
+                        <td>
+                            @item.CategoryTypeName
+                        </td>
+                        <td>
+                            <a href="https://24wallpapers.com/wallpaper/@item.SEOCategoryTypeName" target="_blank" title="24wallpapers web link">
+                                https://24wallpapers.com/wallpaper/@item.SEOCategoryTypeName
+                            </a>
+                        </td>
+                        <td>
+                            @item.CreatedOn
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <br />
+        <h4 class="mb-3">Sub Category Wallpaper Link</h4>
+
+        <table class="table table-responsive" style="font-size:12px;">
+            <thead>
+                <tr>
+                    <th>
+                        #
+                    </th>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Link
+                    </th>
+                    <th>
+                        Date
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @{ int j = 1;}
+                @foreach (var item in ViewBag.SubCategory)
+                {
+                    <tr>
+                        <td>@Html.Raw(j++)</td>
+                        <td>
+                            @item.CategoryName
+                        </td>
+                        <td>
+                            <a href="https://24wallpapers.com/wallpapers/@item.SEOCategoryName" target="_blank" title="24wallpapers web link">
+                                https://24wallpapers.com/wallpapers/@item.SEOCategoryName
+                            </a>
+                        </td>
+                        <td>
+                            @item.CreatedOn
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</section>
+
+
+
+
+
+
