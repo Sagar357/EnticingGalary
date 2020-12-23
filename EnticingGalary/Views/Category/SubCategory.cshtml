@@ -99,7 +99,7 @@ else
                                 <img src="@Url.Content(subcategory["CategoryImagePath"])" />
                             </div>
                             <div class="img-bx-text p-2">
-                                <a href="@Url.Action("SubCategoryDetail", "Category", new { SEOCategoryName = @subcategory["SEOCategoryName"] ,PageNumber=0})">
+                                <a href="@Url.Action("SubCategoryDetail", "Category", new { SEOCategoryName = @subcategory["SEOCategoryName"] })">
 
                                     <h5 class="text-white text-justyfy">@subcategory["CatName"]</h5>
                                 </a>

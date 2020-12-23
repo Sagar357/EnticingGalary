@@ -74,7 +74,7 @@ namespace EnticingGalary.Controllers
             return View();
         }
 
-        public ActionResult SubCategoryDetail(string SEOCategoryName, int PageNumber )
+        public ActionResult SubCategoryDetail(string SEOCategoryName, int PageNumber=0 )
         {
             //For Search
             ViewBag.CategoryTypeName = new SelectList(db.CategoryTypes.ToList(), "SEOCategoryTypeName", "CategoryTypeName");
