@@ -219,50 +219,58 @@ namespace EnticingGalary.Controllers
 
         public ActionResult AddNewCategory(Category category, HttpPostedFileBase categoryimage)
         {
-            if (category.CategoryName == "" || category.CategoryName == null ||
-                category.MetaCatTitle == "" || category.MetaCatTitle == null ||
-                category.SEOCategoryName == "" || category.SEOCategoryName == null ||
-                category.MetaCatDescription == "" || category.MetaCatDescription == null)
+            try
             {
-                ViewBag.CategoryTypeId = new SelectList(db.CategoryTypes.ToList(), "CategoryTypeId", "CategoryTypeName");
-                return View(category);
-            }
-            var categoryexist = db.Categories.Where(m => m.SEOCategoryName == category.SEOCategoryName.Replace(" ", "-")).FirstOrDefault();
-            if (categoryexist != null)
-            {
-                ViewBag.CategoryTypeId = new SelectList(db.CategoryTypes.ToList(), "CategoryTypeId", "CategoryTypeName");
-                ModelState.AddModelError("", "sub category url already exist. please enter unique url");
-                return View(category);
-            }
-            if (categoryimage != null && categoryimage.ContentLength > 0)
-            {
-                CategoryType categorytype = db.CategoryTypes.Find(category.CategoryTypeId);
-                string getimageExtention = Path.GetExtension(categoryimage.FileName);
-                Random rnumber = new Random();
-                string FileCategoryImage = Path.GetFileName("ci" + DateTime.Now.Millisecond.ToString() + System.Guid.NewGuid() + rnumber.Next().ToString() + getimageExtention);
-                categoryimage.SaveAs(Server.MapPath("~/Content/Images/CategoryImages/") + FileCategoryImage);
-                string imagepath = @"https://24wallpapers.com/Content/Images/CategoryImages/" + FileCategoryImage;
-                //string imagepath = @"~/Content/Images/CategoryImages/" + FileCategoryImage;
-                category.CategoryImagePath = imagepath;
-                category.CategoryTypeName = categorytype.CategoryTypeName;
-                category.SEOCategoryName = category.SEOCategoryName.Replace(" ", "-");
-                category.SEOCategoryTypeName = categorytype.SEOCategoryTypeName.Replace(" ", "-");
+                if (category.CategoryName == "" || category.CategoryName == null ||
+                      category.MetaCatTitle == "" || category.MetaCatTitle == null ||
+                      category.SEOCategoryName == "" || category.SEOCategoryName == null ||
+                      category.MetaCatDescription == "" || category.MetaCatDescription == null)
+                {
+                    ViewBag.CategoryTypeId = new SelectList(db.CategoryTypes.ToList(), "CategoryTypeId", "CategoryTypeName");
+                    return View(category);
+                }
+                var categoryexist = db.Categories.Where(m => m.SEOCategoryName == category.SEOCategoryName.Replace(" ", "-")).FirstOrDefault();
+                if (categoryexist != null)
+                {
+                    ViewBag.CategoryTypeId = new SelectList(db.CategoryTypes.ToList(), "CategoryTypeId", "CategoryTypeName");
+                    ModelState.AddModelError("", "sub category url already exist. please enter unique url");
+                    return View(category);
+                }
+                if (categoryimage != null && categoryimage.ContentLength > 0)
+                {
+                    CategoryType categorytype = db.CategoryTypes.Find(category.CategoryTypeId);
+                    string getimageExtention = Path.GetExtension(categoryimage.FileName);
+                    Random rnumber = new Random();
+                    string FileCategoryImage = Path.GetFileName("ci" + DateTime.Now.Millisecond.ToString() + System.Guid.NewGuid() + rnumber.Next().ToString() + getimageExtention);
+                    categoryimage.SaveAs(Server.MapPath("~/Content/Images/CategoryImages/") + FileCategoryImage);
+                    string imagepath = @"https://24wallpapers.com/Content/Images/CategoryImages/" + FileCategoryImage;
+                    //string imagepath = @"~/Content/Images/CategoryImages/" + FileCategoryImage;
+                    category.CategoryImagePath = imagepath;
+                    category.CategoryTypeName = categorytype.CategoryTypeName;
+                    category.SEOCategoryName = category.SEOCategoryName.Replace(" ", "-");
+                    category.SEOCategoryTypeName = categorytype.SEOCategoryTypeName.Replace(" ", "-");
 
-                category.CreatedOn = DateTime.Now;
-                category.UpdatedOn = null;
-                category.Review = 0;
+                    category.CreatedOn = DateTime.Now;
+                    category.UpdatedOn = null;
+                    category.Review = 0;
 
-                db.Categories.Add(category);
-                db.SaveChanges();
-                ViewBag.CategoryTypeId = new SelectList(db.CategoryTypes.ToList(), "CategoryTypeId", "CategoryTypeName", category.CategoryTypeId);
-                ModelState.Clear();
-                ViewBag.SM = "caategory add successfully";
-                return View();
+                    db.Categories.Add(category);
+                    db.SaveChanges();
+                    ViewBag.CategoryTypeId = new SelectList(db.CategoryTypes.ToList(), "CategoryTypeId", "CategoryTypeName", category.CategoryTypeId);
+                    ModelState.Clear();
+                    ViewBag.SM = "caategory add successfully";
+                    return View();
+                }
+                else
+                {
+                    ViewBag.CategoryTypeId = new SelectList(db.CategoryTypes, "CategoryTypeId", "CategoryTypeName");
+                    return View(category);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                ViewBag.CategoryTypeId = new SelectList(db.CategoryTypes, "CategoryTypeId", "CategoryTypeName");
-                return View(category);
+
+                throw;
             }
         }
         public ActionResult EditCategory(long? id)

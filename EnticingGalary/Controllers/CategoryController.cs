@@ -12,6 +12,7 @@ using System.Web.UI;
 /*
  * Change Log:
  * #CC01 ,Sagar Srivastava , A section on the admin page for redirection of links is to be added. So, that from the admin panel any source URL in our site can be redirected to any target URL on our website. ,29-10-2020
+ * #CC02 ,Sagar Srivastava , Pagination Commented. ,28-12-2020
  */
 
 namespace EnticingGalary.Controllers
@@ -74,7 +75,7 @@ namespace EnticingGalary.Controllers
             return View();
         }
 
-        public ActionResult SubCategoryDetail(string SEOCategoryName, int PageNumber=0 )
+        public ActionResult SubCategoryDetail(string SEOCategoryName /*, int PageNumber=0*/ )
         {
             //For Search
             ViewBag.CategoryTypeName = new SelectList(db.CategoryTypes.ToList(), "SEOCategoryTypeName", "CategoryTypeName");
@@ -129,13 +130,15 @@ namespace EnticingGalary.Controllers
                 ViewBag.NoWallpaper = "NA";
             }
             ViewBag.SeoCatName = SEOCategoryName;
-            ViewBag.WallpaperCount = db.Wallpapers.Where(m => m.SEOCatName == SEOCategoryName).ToList().Count();
-            ViewBag.Pagecount = ViewBag.WallpaperCount / 10;
-            ViewBag.PageNo = PageNumber;
+            /*#CC02 commented start*/
+            //ViewBag.WallpaperCount = db.Wallpapers.Where(m => m.SEOCatName == SEOCategoryName).ToList().Count();
+            //ViewBag.Pagecount = ViewBag.WallpaperCount / 10;
+            //ViewBag.PageNo = PageNumber;
+            /*#CC02 commented end*/
             var wallpaperList = db.Wallpapers.Where(m => m.SEOCatName == SEOCategoryName);
-            var SelectedWallpapers = wallpaperList.OrderByDescending(m=>m.CreatedOn).Skip(10*PageNumber).Take(10);
+            //var SelectedWallpapers = wallpaperList.OrderByDescending(m=>m.CreatedOn).Skip(10*PageNumber).Take(10);     /*#CC02 commented*/
 
-            return View(SelectedWallpapers);
+            return View(wallpaperList);
         }
 
 

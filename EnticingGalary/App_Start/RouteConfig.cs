@@ -15,11 +15,12 @@ namespace EnticingGalary
         {
 
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-                        
+
             //sub category details
             //wallpaper list
-            routes.Add("SubCategoryDetails", new GetSEOFriendlyRoute("wallpapers/{SEOCategoryName}/{PageNumber}",
-            new RouteValueDictionary(new { controller = "Category", action = "SubCategoryDetail" ,PageNumber=UrlParameter.Optional }),
+            //routes.Add("SubCategoryDetails", new GetSEOFriendlyRoute("wallpapers/{SEOCategoryName}/{PageNumber}",
+            routes.Add("SubCategoryDetails", new GetSEOFriendlyRoute("wallpapers/{SEOCategoryName}",
+            new RouteValueDictionary(new { controller = "Category", action = "SubCategoryDetail" /*,PageNumber=UrlParameter.Optional*/ }),
             new MvcRouteHandler()));
 
             //category details
